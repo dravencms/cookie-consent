@@ -1,0 +1,13 @@
+extensions:
+    dravencms.cookieConsent: Dravencms\CookieConsent\DI\CookieConsentExtension
+
+
+services:
+    routeFactory.CookieConsent: Dravencms\CookieConsent\RouteFactory
+    route:
+        setup:
+            - addRouteFactory(@routeFactory.CookieConsent)
+
+nettrine.orm.annotations:
+    mapping:
+        Dravencms\Model\CookieConsent: %appDir%/../vendor/dravencms/cookie-consent/src/Dravencms/Model/CookieConsent/Entities
