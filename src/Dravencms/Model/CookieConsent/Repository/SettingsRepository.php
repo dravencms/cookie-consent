@@ -69,7 +69,7 @@ class SettingsRepository
                 'identifier' => $identifier
             ]);
 
-        if ($robotsIgnore)
+        if ($settingsIgnore)
         {
             $qb->andWhere('s != :settingsIgnore')
                 ->setParameter('settingsIgnore', $settingsIgnore);
@@ -93,5 +93,35 @@ class SettingsRepository
     public function getActive(bool $isActive = true)
     {
         return $this->settingsRepository->findBy(['isActive' => $isActive]);
+    }
+
+    /**
+     * @return Settings|null
+     */
+    public function getOneByActive(bool $isActive = true): ?Settings
+    {
+        return $this->settingsRepository->findOneBy(['isActive' => $isActive]);
+    }
+
+    /**
+     * @param Settings $settings
+     * @return void
+     */
+    public function processIsActive(Settings $settings): void {
+        if ($settings->isActive()) {
+            // Set all other Settings as inactive
+            $qb = $this->settingsRepository->createQueryBuilder('s')
+            ->select('s')
+            ->where('s != :settings')
+            ->setParameter('settings', $settings);
+
+            $otherSettings = $qb->getQuery()
+                ->getResult();
+
+            foreach ($otherSettings AS $other) {
+                $other->setIsActive(false);
+                $this->entityManager->persist($other);
+            }
+        }
     }
 }

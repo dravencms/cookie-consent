@@ -9,7 +9,7 @@ use Dravencms\AdminModule\Components\CookieConsent\SettingsGrid\SettingsGridFact
 use Dravencms\AdminModule\Components\CookieConsent\SettingsGrid\SettingsGrid;
 use Dravencms\AdminModule\SecuredPresenter;
 use Dravencms\Model\CookieConsent\Entities\Settings;
-use Dravencms\Model\CookieConsent\Repository\ettingsRepository;
+use Dravencms\Model\CookieConsent\Repository\SettingsRepository;
 
 /**
  * Description of SettingsPresenter
@@ -60,7 +60,7 @@ class SettingsPresenter extends SecuredPresenter
      */
     protected function createComponentFormSettings(): SettingsForm
     {
-        $control = $this->settingsFormFactory->create($this->robots);
+        $control = $this->settingsFormFactory->create($this->settings);
         $control->onSuccess[] = function()
         {
             $this->flashMessage('Settings has been successfully saved', 'alert-success');

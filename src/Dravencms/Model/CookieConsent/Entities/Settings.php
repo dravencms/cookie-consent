@@ -23,8 +23,8 @@ class Settings
     use Identifier;
     use TimestampableEntity;
 
-    const MODE_OPT_IN = 'OPT_IN';
-    const MODE_OPT_OUT = 'OPT_OUT';
+    const MODE_OPT_IN = 'opt-in';
+    const MODE_OPT_OUT = 'opt-out';
 
     /**
      * @var string
@@ -157,7 +157,7 @@ class Settings
      */
     public function setMode(string $mode): void
     {
-        if (!in_array($action, [self::MODE_OPT_OUT, self::MODE_OPT_IN])) {
+        if (!in_array($mode, [self::MODE_OPT_OUT, self::MODE_OPT_IN])) {
             throw new \InvalidArgumentException("Invalid $mode");
         }
         $this->mode = $mode;

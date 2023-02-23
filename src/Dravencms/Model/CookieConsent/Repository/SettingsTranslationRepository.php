@@ -33,7 +33,7 @@ class SettingsTranslationRepository
      */
     public function getTranslation(Settings $settings, ILocale $locale): ?SettingsTranslation
     {
-        return $this->settingsTranslationRepository->findOneBy(['group' => $group, 'settings' => $settings]);
+        return $this->settingsTranslationRepository->findOneBy(['settings' => $settings, 'locale' => $locale]);
     }
 
     /**

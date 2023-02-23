@@ -97,11 +97,11 @@ class SettingsGrid extends BaseControl
 
         $grid->setDataSource($this->settingsRepository->getSettingsQueryBuilder());
 
-        $grid->setDefaultSort(['position' => 'ASC']);
+        $grid->setDefaultSort(['createdAt' => 'ASC']);
         $grid->addColumnText('identifier', 'Identifier')
             ->setFilterText();
 
-        $grid->addColumnDateTime('date', 'Date')
+        $grid->addColumnDateTime('createdAt', 'Created')
             ->setFormat($this->currentLocale->getDateTimeFormat())
             ->setAlign('center')
             ->setSortable()
@@ -115,31 +115,15 @@ class SettingsGrid extends BaseControl
 
         $grid->addColumnBoolean('isActive', 'Active');
 
-        $grid->addColumnNumber('position', 'Position')
-            ->setAlign('center')
-            ->setFilterRange();
-
-        $grid->addColumnNumber('pictures', 'Pictures')
-            ->setAlign('center')
-            ->setRenderer(function($row){
-                /** @var Settings $row */
-                return $row->getPictures()->count();
-            });
-
-        if ($this->user->isAllowed('settings', 'edit'))
+        if ($this->user->isAllowed('cookieConsent', 'edit'))
         {
-            $grid->addAction('pictures', 'Pictures')
-                ->setIcon('folder-open')
-                ->setTitle('Pictures')
-                ->setClass('btn btn-xs btn-default');
-
             $grid->addAction('edit', '')
                 ->setIcon('pencil')
                 ->setTitle('Upravit')
                 ->setClass('btn btn-xs btn-primary');
         }
 
-        if ($this->user->isAllowed('settings', 'delete'))
+        if ($this->user->isAllowed('cookieConsent', 'delete'))
         {
             $grid->addAction('delete', '', 'delete!')
                 ->setIcon('trash')
@@ -166,20 +150,9 @@ class SettingsGrid extends BaseControl
      */
     public function handleDelete($id): void
     {
-        $galleries = $this->settingsRepository->getById($id);
-        foreach ($galleries AS $settings)
+        $rows = $this->settingsRepository->getById($id);
+        foreach ($rows AS $settings)
         {
-            foreach($settings->getPictures() AS $picture){
-                $structureFileLink = $picture->getStructureFileLink();
-                if ($structureFileLink) {
-                    $structureFileLink->setIsUsed(false);
-                    $structureFileLink->setIsAutoclean(true);
-                    $this->entityManager->persist($structureFileLink);
-                }
-
-                $this->entityManager->remove($picture);
-            }
-
             $this->entityManager->remove($settings);
         }
 

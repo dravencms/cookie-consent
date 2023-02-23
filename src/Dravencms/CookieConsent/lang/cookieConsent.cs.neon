@@ -1,3 +1,42 @@
 settings:
     button:
         label: Nastavení cookies
+
+consent_modal:
+    primary_btn.text: Souhlasím
+    secondary_btn.text: Nastavení cookies
+
+settings_modal:
+    title: Nastavení cookies
+    save_settings_btn: Uložit nastavení
+    accept_all_btn: Přijmout vše
+    reject_all_btn: Odmítnout vše
+    close_btn_label: Zavřít
+    cookie_table_headers:
+        col2: Účel
+        col3: Expirace
+
+    blocks:
+        b0:
+            title: Předvolby ochrany osobních údajů
+            description: 'Při návštěvě jakékoli webové stránky je pravděpodobné, že stránka získá nebo uloží informace ve vašem prohlížeči, a to většinou ve formě souborů cookie. Můžou to být informace týkající se vás, vašich preferencí a zařízení, které používáte. Většinou to slouží k vylepšování stránky, aby fungovala podle vašich očekávání. Informace vás zpravidla neidentifikují jako jednotlivce, ale celkově mohou pomoci přizpůsobovat prostředí vašim potřebám. Respektujeme vaše právo na soukromí, a proto se můžete rozhodnout, že některé soubory cookie nebudete akceptovat. Nezapomínejte ale na to, že zablokováním některých souborů cookie můžete ovlivnit, jak stránka funguje a jaké služby jsou vám nabízeny.'
+        b1: 
+            title: Naprosto nezbytné soubory cookie
+            description: 'Jsou nezbytné k tomu, aby web fungoval, takže není možné je vypnout. Většinou jsou nastavené jako odezva na akce, které jste provedli, jako je požadavek služeb týkajících se bezpečnostních nastavení, přihlašování, vyplňování formulářů atp. Prohlížeč můžete nastavit tak, aby blokoval soubory cookie nebo o nich posílal upozornění. Mějte na paměti, že některé stránky bez těchto souborů nebudou fungovat. Tyto soubory cookie neukládají žádně osobní identifikovatelné informace.'
+        b2:
+            title: Soubory cookie pro analýzu a zvýšení výkonu
+            description: 'Pomáhají sledovat počet návštěvníků a také z jakého zdroje provoz pochází, což nám umožňuje zlepšovat výkon stránky. Můžeme s nimi určovat, které stránky jsou nejoblíbenější a které nejsou oblíbené, a také sledovat, jakým způsobem se návštěvníci na webu pohybují. Všechny informace, které soubory cookie shromažďují, jsou souhrnné a anonymní. Pokud soubory cookie nepovolíte, nebudeme vědět, kdy jste navštívili naši stránku.'
+            cookie_table:
+                _ga: 'GoogleAnalytics: Používá se k rozeznávání uživatelů.'
+                _gid: 'GoogleAnalytics: Používá se k rozeznávání uživatelů.'
+                _gat: 'GoogleAnalytics: Používá se ke kontrole počtu požadavků.'
+        b3:
+            title: Soubory cookie sociálních sítí
+            description: 'Soubory cookie jsou nastavovány službami sociálních médií, které jsme na stránku přidali, abyste náš obsah mohli sdílet s přáteli a dalšími sítěmi. Mají schopnost sledovat prohlížeč i na jiných stránkách a budovat profil s přehledem vašich zájmů. Může to mít vliv na obsah a zprávy, které se zobrazí na dalších stránkách, jež navštívíte. Pokud tyto soubory cookie nepovolíte, je možné, že se vám nezobrazí tyto nástroje na sdílení, anebo nebudou funkční.'
+            cookie_table:
+                _fbp: 'Facebook: Používá se k rozeznávání uživatelů.'
+                CONSENT: 'Google: Ukládá informace o souhlasu s prohlášením o ochraně dat.'
+                __Secure: 'Vytváří profil zájmů návštěvníků webových stránek, aby se jim prostřednictvím retargetingu zobrazovaly relevantní a personalizované reklamy.'
+        b4:
+            title: Další informace
+            description: '<a href="%cookiesInformationUrl%" class="cc-link" target="_blank">Informace o souborech cookies</a> | <a href="%personalDataProtectionUrl%" class="cc-link" target="_blank">Ochrana osobních údajů</a>.'

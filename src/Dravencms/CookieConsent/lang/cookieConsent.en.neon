@@ -1,3 +1,42 @@
 settings:
     button:
         label: Cookies settings
+
+consent_modal:
+    primary_btn.text: I agree
+    secondary_btn.text: Cookies settings
+
+settings_modal:
+    title: Cookies settings
+    save_settings_btn: Save current selection
+    accept_all_btn: Accept all
+    reject_all_btn: Reject all
+    close_btn_label: Close
+    cookie_table_headers:
+        col2: Purpose
+        col3: Expiration
+
+    blocks:
+        b0:
+            title: Personal data protection preferences
+            description: 'When you visit any website, it is likely that the site will obtain or store information in your browser, usually in the form of cookies. This may be information relating to you, your preferences and the device you are using. Most of the time this is used to improve the site so that it performs to your expectations. The information does not usually identify you as an individual, but overall it can help to tailor the environment to your needs. We respect your right to privacy and you may choose not to accept some cookies. However, please remember that by blocking some cookies you may be able to influence how the site works and what services are offered to you.'
+        b1: 
+            title: Strictly necessary cookies
+            description: 'They are essential for the site to work, so it is not possible to turn them off. They are usually set in response to actions you take, such as requesting services related to security settings, logging in, filling out forms, etc. You can set your browser to block cookies or send notifications about them. Keep in mind that some sites will not work without these files. These cookies do not store any personally identifiable information.'
+        b2:
+            title: Analytics and performance cookies
+            description: 'They help us track the number of visitors as well as the source of traffic, allowing us to improve site performance. We can use them to determine which pages are most popular and which are unpopular, and to track how visitors move around the site. All the information that cookies collect is aggregated and anonymous. If you do not allow cookies, we will not know when you visited our site.'
+            cookie_table:
+                _ga: 'GoogleAnalytics: used for user recognition.'
+                _gid: 'GoogleAnalytics: used for user recognition.'
+                _gat: 'GoogleAnalytics: used to control the number of requests.'
+        b3:
+            title: Targeting and advertising cookies
+            description: 'These cookies are set by the social media services we have added to the site so that you can share our content with your friends and other networks. They have the ability to track your browser on other sites and build a profile with an overview of your interests. This may affect the content and messages that appear on other sites you visit. If you do not allow these cookies, you may not see these sharing tools or they may not work.'
+            cookie_table:
+                _fbp: 'Facebook: It is used to indetify users.'
+                CONSENT: "Google: indicates acceptance of Google's privacy review."
+                __Secure: 'Builds a profile of website visitor interests to show relevant and personalized ads through retargeting.'
+        b4:
+            title: More information
+            description: '<a href="%cookiesInformationUrl%" class="cc-link" target="_blank">Information about cookies </a> | <a href="%personalDataProtectionUrl%" class="cc-link" target="_blank">Processing of personal data</a>.'

@@ -153,10 +153,10 @@ class SettingsForm extends BaseControl
             $container->addTextArea('revisionMessage')
             ->setRequired('Please enter revision message.');
 
-            $container->addTextArea('personalDataProtectionUrl')
+            $container->addText('personalDataProtectionUrl')
             ->setRequired('Please enter personal data protection url.');
 
-            $container->addTextArea('cookiesInformationUrl')
+            $container->addText('cookiesInformationUrl')
             ->setRequired('Please enter cookies information url.');
         }
 
@@ -166,8 +166,8 @@ class SettingsForm extends BaseControl
         $form->addInteger('cookieExpiration');
 
         $modes = [
-            Settings::MODE_OPT_OUT => 'Out Out',
-            Settings::MODE_OPT_IN => 'Out In',
+            Settings::MODE_OPT_OUT => 'Opt Out',
+            Settings::MODE_OPT_IN => 'Opt In',
         ];
         $form->addSelect('mode', null, $modes)
             ->setRequired('Please select valid mode');
@@ -235,6 +235,9 @@ class SettingsForm extends BaseControl
         $this->entityManager->persist($settings);
 
         $this->entityManager->flush();
+
+        // isActive can be set only on one item
+        $this->settingsRepository->processIsActive($settings);
 
 
         foreach ($this->localeRepository->getActive() AS $activeLocale) {

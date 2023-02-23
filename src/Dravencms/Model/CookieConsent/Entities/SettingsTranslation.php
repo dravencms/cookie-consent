@@ -82,7 +82,7 @@ class SettingsTranslation
         string $description, 
         string $revisionMessage,
         string $personalDataProtectionUrl,
-        string $cookiesInformationUrl,
+        string $cookiesInformationUrl
     )
     {
         $this->title = $title;
@@ -191,11 +191,11 @@ class SettingsTranslation
     }
 
     /**
-     * @return Group
+     * @return Settings
      */
-    public function getGroup(): Group
+    public function getSettings(): Settings
     {
-        return $this->group;
+        return $this->settings;
     }
 
     /**

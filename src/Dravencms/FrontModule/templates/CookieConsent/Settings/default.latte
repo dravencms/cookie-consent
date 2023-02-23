@@ -1,14 +1,16 @@
 {contentType text/javascript; charset=utf-8}
 
 var cc = initCookieConsent();
+{if $settings}
 cc.run({
     current_lang: document.documentElement.getAttribute('lang'), // autodetect
-    autoclear_cookies: true,                    // default: false
+    autoclear_cookies: {$settings->isAutoclearCookies() ? 'true': 'false'|noescape},                    // default: false
     cookie_name: 'cc_cookie',             // default: 'cc_cookie'
-    cookie_expiration: 365,                     // default: 182
-    page_scripts: true,                         // default: false
-    force_consent: false,                        // default: false
-    mode: 'opt-out',
+    cookie_expiration: {$settings->getCookieExpiration()},                     // default: 182
+    page_scripts: {$settings->isPageScripts() ? 'true': 'false'|noescape},                         // default: false
+    force_consent: {$settings->isForceConsent() ? 'true': 'false'|noescape},                        // default: false
+    mode: {$settings->getMode()},
+    revision: {$settings->getId()},
     gui_options: {
         consent_modal: {
             layout: 'bar',                    // box,cloud,bar
@@ -41,3 +43,4 @@ cc.run({
     },
     languages: {$languages|noescape}
 });
+{/if}

@@ -21,7 +21,7 @@ class AdminMenuFixtures extends AbstractFixture implements DependentFixtureInter
     {
         $menu = $manager->getRepository(Menu::class);
         
-        $adminMenuRoot = new Menu('SEO', ':Admin:CookieConsent:Settings', 'fa-cookie',  $this->getReference('user-acl-operation-cookieConsent-edit'));
+        $adminMenuRoot = new Menu('Cookie consent', ':Admin:CookieConsent:Settings', 'fa-eur',  $this->getReference('user-acl-operation-cookieConsent-edit'));
         $manager->persist($adminMenuRoot);
         
         $manager->flush();
