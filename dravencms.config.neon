@@ -28,5 +28,5 @@ webloader:
     js:
         cookieConsent: 
             remoteFiles:
-                - assets/cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.js
-                - cookieconsent-init
+                - /assets/cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.js
+                - /cookieconsent-init
