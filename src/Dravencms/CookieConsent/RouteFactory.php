@@ -18,8 +18,7 @@ class RouteFactory implements IRouterFactory
         $router = new RouteList();
 
         $frontEnd = new RouteList('Front');
-
-        $frontEnd->addRoute('cookieconsent-init.js', 'CookieConsent:Settings:default');
+        $frontEnd->addRoute('cookieconsent-init', 'CookieConsent:Settings:default');
 
         $router->add($frontEnd);
         
