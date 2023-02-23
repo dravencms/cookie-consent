@@ -109,6 +109,7 @@ class SettingsForm extends BaseControl
                 'isPageScripts' => $this->settings->isPageScripts(),
                 'isForceConsent' => $this->settings->isForceConsent(),
                 'mode' => $this->settings->getMode(),
+                'cookieDomain' => $this->settings->getCookieDomain(),
             ];
 
             foreach ($this->settings->getTranslations() AS $translation)
@@ -164,6 +165,7 @@ class SettingsForm extends BaseControl
             ->setRequired('Please enter identifier');
 
         $form->addInteger('cookieExpiration');
+        $form->addText('cookieDomain');
 
         $modes = [
             Settings::MODE_OPT_OUT => 'Opt Out',
@@ -211,6 +213,8 @@ class SettingsForm extends BaseControl
     {
         $values = $form->getValues();
         
+        $cookieDomain = ($values->cookieDomain ? $values->cookieDomain: null);
+
         if ($this->settings) {
             $settings = $this->settings;
             $settings->setIdentifier($values->identifier);
@@ -219,6 +223,7 @@ class SettingsForm extends BaseControl
             $settings->setIsPageScripts($values->isPageScripts);
             $settings->setIsForceConsent($values->isForceConsent);
             $settings->setCookieExpiration($values->cookieExpiration);
+            $settings->setCookieDomain($cookieDomain);
             $settings->setMode($values->mode);
         } else {
             $settings = new Settings(
@@ -228,7 +233,8 @@ class SettingsForm extends BaseControl
                 $values->cookieExpiration,
                 $values->isPageScripts,
                 $values->isForceConsent,
-                $values->mode
+                $values->mode,
+                $cookieDomain
             );
         }
 

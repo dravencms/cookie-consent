@@ -7,6 +7,7 @@ cc.run({
     autoclear_cookies: {$settings->isAutoclearCookies() ? 'true': 'false'|noescape},                    // default: false
     cookie_name: 'cc_cookie',             // default: 'cc_cookie'
     cookie_expiration: {$settings->getCookieExpiration()},                     // default: 182
+    cookie_domain: {if $settings->getCookieDomain()}{$settings->getCookieDomain()}{else}undefined{/if},
     page_scripts: {$settings->isPageScripts() ? 'true': 'false'|noescape},                         // default: false
     force_consent: {$settings->isForceConsent() ? 'true': 'false'|noescape},                        // default: false
     mode: {$settings->getMode()},

@@ -72,17 +72,24 @@
             </div><!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="cookieExpiration">{_"Cookie expiration"}</label>
-                    <input type="number" n:name="cookieExpiration" class="form-control">
+                    <label class="control-label" n:name="mode">{_"Mode"}</label>
+                    <select n:name="mode" class="form-control"></select>
                 </div>
             </div><!-- col-sm-6 -->
+            
         </div><!-- row -->
 
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="mode">{_"Mode"}</label>
-                    <select n:name="mode" class="form-control"></select>
+                    <label class="control-label" n:name="cookieExpiration">{_"Cookie expiration"}</label>
+                    <input type="number" n:name="cookieExpiration" class="form-control">
+                </div>
+            </div><!-- col-sm-6 -->
+            <div class="col-sm-6">
+                <div class="form-group no-margin-hr">
+                    <label class="control-label" n:name="cookieDomain">{_"Cookie domain (leave empty for autodetection)"}</label>
+                    <input type="text" n:name="cookieDomain" class="form-control">
                 </div>
             </div><!-- col-sm-6 -->
         </div><!-- row -->

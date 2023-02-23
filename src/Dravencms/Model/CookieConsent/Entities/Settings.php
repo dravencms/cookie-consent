@@ -69,6 +69,12 @@ class Settings
     private $mode;
 
     /**
+     * @var string
+     * @ORM\Column(type="string",length=255, nullable=true)
+     */
+    private $cookieDomain;
+
+    /**
      * @var ArrayCollection|SettingsTranslation[]
      * @ORM\OneToMany(targetEntity="SettingsTranslation", mappedBy="settings",cascade={"persist", "remove"})
      */
@@ -89,7 +95,8 @@ class Settings
         int $cookieExpiration = 365,
         bool $isPageScripts = true,
         bool $isForceConsent = false,
-        string $mode = self::MODE_OPT_OUT
+        string $mode = self::MODE_OPT_OUT,
+        string $cookieDomain = null
     )
     {
         $this->identifier = $identifier;
@@ -98,6 +105,7 @@ class Settings
         $this->cookieExpiration = $cookieExpiration;
         $this->isPageScripts = $isPageScripts;
         $this->isForceConsent = $isForceConsent;
+        $this->cookieDomain = $cookieDomain;
         $this->setMode($mode);
 
         $this->translations = new ArrayCollection();
@@ -164,6 +172,14 @@ class Settings
     }
 
     /**
+     * @param string|null $cookieDomain
+     */
+    public function setCookieDomain(?string $cookieDomain): void
+    {
+        $this->cookieDomain = $cookieDomain;
+    }
+
+    /**
      * @return string
      */
     public function getIdentifier(): string
@@ -217,6 +233,14 @@ class Settings
     public function getMode(): string
     {
         return $this->mode;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCookieDomain(): ?string
+    {
+        return $this->cookieDomain;
     }
 
     /**
