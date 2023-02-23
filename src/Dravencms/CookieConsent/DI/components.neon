@@ -1,3 +1,3 @@
-- Dravencms\FrontModule\Components\CookieConsent\CookieConsent\Settings\SettingsFactory
-- Dravencms\AdminModule\Components\CookieConsent\RobotsForm\RobotsFormFactory
-- Dravencms\AdminModule\Components\CookieConsent\RobotsGrid\RobotsGridFactory
+- Dravencms\FrontModule\Components\CookieConsent\CookieConsent\SettingsButton\SettingsButtonFactory
+- Dravencms\AdminModule\Components\CookieConsent\SettingsForm\SettingsFormFactory
+- Dravencms\AdminModule\Components\CookieConsent\SettingsGrid\SettingsGridFactory

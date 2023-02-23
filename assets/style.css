@@ -1,0 +1,10 @@
+.cookies-settings-icon {
+    background-image: url('./images/cookie.svg');
+    background-size: cover;
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 32px;
+    height: 32px;
+}

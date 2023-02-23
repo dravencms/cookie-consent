@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 /*
- * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
+ * Copyright (C) 2023 Adam Schubert <adam.schubert@sg1-game.net>.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,14 +18,14 @@
  * MA 02110-1301  USA
  */
 
-namespace Dravencms\AdminModule\Components\Settings\SettingsForm;
+namespace Dravencms\AdminModule\Components\CookieConsent\SettingsForm;
 
 use Dravencms\Components\BaseControl\BaseControl;
 use Dravencms\Components\BaseForm\BaseFormFactory;
-use Dravencms\Model\Settings\Entities\Settings;
-use Dravencms\Model\Settings\Entities\SettingsTranslation;
-use Dravencms\Model\Settings\Repository\SettingsRepository;
-use Dravencms\Model\Settings\Repository\SettingsTranslationRepository;
+use Dravencms\Model\CookieConsent\Entities\Settings;
+use Dravencms\Model\CookieConsent\Entities\SettingsTranslation;
+use Dravencms\Model\CookieConsent\Repository\SettingsRepository;
+use Dravencms\Model\CookieConsent\Repository\SettingsTranslationRepository;
 use Dravencms\Locale\CurrentLocaleResolver;
 use Dravencms\Model\Locale\Repository\LocaleRepository;
 use Dravencms\Database\EntityManager;

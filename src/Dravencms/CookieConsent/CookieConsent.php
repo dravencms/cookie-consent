@@ -8,7 +8,7 @@ use Nette\SmartObject;
  * Class CookieConsent
  * @package Dravencms\CookieConsent
  */
-class CookieConsent0
+class CookieConsent
 {
     use SmartObject;
 

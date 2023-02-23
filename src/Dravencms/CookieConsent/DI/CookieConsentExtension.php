@@ -2,6 +2,7 @@
 
 namespace Dravencms\CookieConsent\DI;
 
+use Contributte\Translation\DI\TranslationProviderInterface;
 use Dravencms\CookieConsent\CookieConsent;
 use Nette\DI\CompilerExtension;
 
@@ -10,8 +11,12 @@ use Salamek\Cms\DI\CmsExtension;
  * Class CookieConsentExtension
  * @package Dravencms\CookieConsent\DI
  */
-class CookieConsentExtension extends CompilerExtension
+class CookieConsentExtension extends CompilerExtension implements TranslationProviderInterface
 {
+    public function getTranslationResources(): array
+    {
+        return [__DIR__.'/../lang'];
+    }
 
     public function loadConfiguration(): void
     {

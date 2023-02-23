@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 /*
- * Copyright (C) 2016 Adam Schubert <adam.schubert@sg1-game.net>.
+ * Copyright (C) 2023 Adam Schubert <adam.schubert@sg1-game.net>.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -17,7 +17,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-namespace Dravencms\AdminModule\Components\Settings\SettingsGrid;
+namespace Dravencms\AdminModule\Components\CookieConsent\SettingsGrid;
 
 
 interface SettingsGridFactory

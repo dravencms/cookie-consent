@@ -1,8 +1,6 @@
-- Dravencms\Model\CookieConsent\Repository\TrackingRepository
-- Dravencms\Model\CookieConsent\Repository\TrackingServiceRepository
-- Dravencms\Model\CookieConsent\Repository\RobotsRepository
+- Dravencms\Model\CookieConsent\Repository\SettingsRepository
+- Dravencms\Model\CookieConsent\Repository\SettingsTranslationRepository
 
 - Dravencms\Model\CookieConsent\Fixtures\AclOperationFixtures
 - Dravencms\Model\CookieConsent\Fixtures\AclResourceFixtures
 - Dravencms\Model\CookieConsent\Fixtures\AdminMenuFixtures
-- Dravencms\Model\CookieConsent\Fixtures\TrackingServiceFixtures

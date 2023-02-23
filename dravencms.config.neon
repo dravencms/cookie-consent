@@ -11,3 +11,22 @@ services:
 nettrine.orm.annotations:
     mapping:
         Dravencms\Model\CookieConsent: %appDir%/../vendor/dravencms/cookie-consent/src/Dravencms/Model/CookieConsent/Entities
+
+
+
+webloader:
+    css:
+        cookieConsent:
+            files:
+                - cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.css
+                - cookieConsent/style.css
+
+            fileFilters:
+                - @wlCssFilter
+                - @sassFilter
+
+    js:
+        cookieConsent: 
+            remoteFiles:
+                - assets/cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.js
+                - cookieconsent-init.js                
