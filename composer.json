@@ -30,6 +30,9 @@
   },
   "extra": {
     "dravencms": {
+      "files": {
+        "assets/*": "%wwwDir%/assets/cookieConsent"
+      },
       "configuration": "dravencms.config.neon"
     }
   }
