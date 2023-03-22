@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group no-margin-hr">
-                                    <label class="control-label" n:name="title">{_"Title"}</label>
+                                    <label class="control-label" n:name="title">{_"cookieConsent.title"}</label>
                                     <input type="text" n:name="title" autofocus="autofocus" class="form-control">
                                 </div>
                             </div><!-- col-sm-12 -->
@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group no-margin-hr">
-                                    <label class="control-label" n:name="description">{_"Description"}</label>
+                                    <label class="control-label" n:name="description">{_"cookieConsent.description"}</label>
                                     <textarea n:name="description" class="form-control"></textarea>
                                 </div>
                             </div><!-- col-sm-12 -->
@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group no-margin-hr">
-                                    <label class="control-label" n:name="revisionMessage">{_"Revision message"}</label>
+                                    <label class="control-label" n:name="revisionMessage">{_"cookieConsent.revisionMessage"}</label>
                                     <textarea n:name="revisionMessage" class="form-control"></textarea>
                                 </div>
                             </div><!-- col-sm-12 -->
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group no-margin-hr">
-                                    <label class="control-label" n:name="personalDataProtectionUrl">{_"Personal data protection url"}</label>
+                                    <label class="control-label" n:name="personalDataProtectionUrl">{_"cookieConsent.personalDataProtectionUrl"}</label>
                                     <input type="url" n:name="personalDataProtectionUrl"  class="form-control">
                                 </div>
                             </div><!-- col-sm-12 -->
@@ -52,7 +52,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group no-margin-hr">
-                                    <label class="control-label" n:name="cookiesInformationUrl">{_"Cookies information url"}</label>
+                                    <label class="control-label" n:name="cookiesInformationUrl">{_"cookieConsent.cookiesInformationUrl"}</label>
                                     <input type="url" n:name="cookiesInformationUrl"  class="form-control">
                                 </div>
                             </div><!-- col-sm-12 -->
@@ -66,13 +66,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="identifier">{_"Identifier"}</label>
+                    <label class="control-label" n:name="identifier">{_"cookieConsent.identifier"}</label>
                     <input type="text" n:name="identifier" class="form-control">
                 </div>
             </div><!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="mode">{_"Mode"}</label>
+                    <label class="control-label" n:name="mode">{_"cookieConsent.mode"}</label>
                     <select n:name="mode" class="form-control"></select>
                 </div>
             </div><!-- col-sm-6 -->
@@ -82,13 +82,13 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="cookieExpiration">{_"Cookie expiration"}</label>
+                    <label class="control-label" n:name="cookieExpiration">{_"cookieConsent.cookieExpiration"}</label>
                     <input type="number" n:name="cookieExpiration" class="form-control">
                 </div>
             </div><!-- col-sm-6 -->
             <div class="col-sm-6">
                 <div class="form-group no-margin-hr">
-                    <label class="control-label" n:name="cookieDomain">{_"Cookie domain (leave empty for autodetection)"}</label>
+                    <label class="control-label" n:name="cookieDomain">{_"cookieConsent.cookieDomain"}</label>
                     <input type="text" n:name="cookieDomain" class="form-control">
                 </div>
             </div><!-- col-sm-6 -->
@@ -98,7 +98,7 @@
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" n:name="isActive" class="px"> <span class="lbl">{_"Active"}</span>
+                        <input type="checkbox" n:name="isActive" class="px"> <span class="lbl">{_"cookieConsent.isActive"}</span>
                     </label>
                 </div>
             </div>
@@ -107,7 +107,7 @@
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" n:name="isAutoclearCookies" class="px"> <span class="lbl">{_"Autoclear cookies"}</span>
+                        <input type="checkbox" n:name="isAutoclearCookies" class="px"> <span class="lbl">{_"cookieConsent.isAutoclearCookies"}</span>
                     </label>
                 </div>
             </div>
@@ -116,7 +116,7 @@
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" n:name="isPageScripts" class="px"> <span class="lbl">{_"Page scripts"}</span>
+                        <input type="checkbox" n:name="isPageScripts" class="px"> <span class="lbl">{_"cookieConsent.isPageScripts"}</span>
                     </label>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             <div class="col-sm-12">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" n:name="isForceConsent" class="px"> <span class="lbl">{_"Force consent"}</span>
+                        <input type="checkbox" n:name="isForceConsent" class="px"> <span class="lbl">{_"cookieConsent.isForceConsent"}</span>
                     </label>
                 </div>
             </div>
@@ -133,6 +133,6 @@
     </div>
 
     <div class="panel-footer">
-        <input type="submit" n:name="send" class="btn btn-success button" value="{_"Save"}">
+        <input type="submit" n:name="send" class="btn btn-success button" value="{_"cookieConsent.save"}">
     </div>
 </form>

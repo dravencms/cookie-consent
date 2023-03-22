@@ -145,24 +145,24 @@ class SettingsForm extends BaseControl
         foreach ($this->localeRepository->getActive() AS $activeLocale) {
             $container = $form->addContainer($activeLocale->getLanguageCode());
             $container->addText('title')
-                ->setRequired('Please enter title.')
-                ->addRule(Form::MAX_LENGTH, 'Title is too long.', 255);
+                ->setRequired('cookieConset.pleaseEnterTitle')
+                ->addRule(Form::MAX_LENGTH, 'cookieConset.titleIsTooLong', 255);
 
             $container->addTextArea('description')
-            ->setRequired('Please enter description.');
+            ->setRequired('cookieConset.pleaseEnterDescription');
 
             $container->addTextArea('revisionMessage')
-            ->setRequired('Please enter revision message.');
+            ->setRequired('cookieConset.pleaseEnterRevisionMessage');
 
             $container->addText('personalDataProtectionUrl')
-            ->setRequired('Please enter personal data protection url.');
+            ->setRequired('cookieConset.pleaseEnterPersonalDataProtectionUrl');
 
             $container->addText('cookiesInformationUrl')
-            ->setRequired('Please enter cookies information url.');
+            ->setRequired('cookieConset.pleaseEnterCookiesInformationUrl');
         }
 
         $form->addText('identifier')
-            ->setRequired('Please enter identifier');
+            ->setRequired('cookieConset.pleaseEnterIdentifier');
 
         $form->addInteger('cookieExpiration');
         $form->addText('cookieDomain');
@@ -172,7 +172,7 @@ class SettingsForm extends BaseControl
             Settings::MODE_OPT_IN => 'Opt In',
         ];
         $form->addSelect('mode', null, $modes)
-            ->setRequired('Please select valid mode');
+            ->setRequired('cookieConset.pleaseSelectValidMode');
 
         $form->addCheckbox('isActive');
         $form->addCheckbox('isAutoclearCookies');
@@ -197,11 +197,11 @@ class SettingsForm extends BaseControl
         $values = $form->getValues();
 
         if (!$this->settingsRepository->isIdentifierFree($values->identifier, $this->settings)) {
-            $form->addError('Tento identifier je již zabrán.');
+            $form->addError('cookieConset.thisIdentifierIsAlreadyUsed');
         }
 
         if (!$this->user->isAllowed('cookieConsent', 'edit')) {
-            $form->addError('Nemáte oprávění editovat cookie consent.');
+            $form->addError('cookieConset.youHaveNoPermissionToEditThisCookieConsent');
         }
     }
 

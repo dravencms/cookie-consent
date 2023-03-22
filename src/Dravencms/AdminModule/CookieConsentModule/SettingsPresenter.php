@@ -8,6 +8,7 @@ use Dravencms\AdminModule\Components\CookieConsent\SettingsForm\SettingsForm;
 use Dravencms\AdminModule\Components\CookieConsent\SettingsGrid\SettingsGridFactory;
 use Dravencms\AdminModule\Components\CookieConsent\SettingsGrid\SettingsGrid;
 use Dravencms\AdminModule\SecuredPresenter;
+use Dravencms\Flash;
 use Dravencms\Model\CookieConsent\Entities\Settings;
 use Dravencms\Model\CookieConsent\Repository\SettingsRepository;
 
@@ -32,7 +33,7 @@ class SettingsPresenter extends SecuredPresenter
 
     public function renderDefault(): void
     {
-        $this->template->h1 = 'Settings';
+        $this->template->h1 = $this->translator->translate('cookieConsent.cookieConsent');
     }
 
     /**
@@ -49,9 +50,9 @@ class SettingsPresenter extends SecuredPresenter
                 $this->error();
             }
             $this->settings = $settings;
-            $this->template->h1 = sprintf('Edit settings „%s“', $settings->getIdentifier());
+            $this->template->h1 = $this->translator->translate('cookieConsent.editCookieConsentIdentifier', ['identifier' => $settings->getIdentifier()]);
         } else {
-            $this->template->h1 = 'New settings';
+            $this->template->h1 = $this->translator->translate('cookieConsent.newCookieConsent');
         }
     }
 
@@ -63,7 +64,7 @@ class SettingsPresenter extends SecuredPresenter
         $control = $this->settingsFormFactory->create($this->settings);
         $control->onSuccess[] = function()
         {
-            $this->flashMessage('Settings has been successfully saved', 'alert-success');
+            $this->flashMessage($this->translator->translate('cookieConsent.cookieConsentHasBeenSuccessfullySaved'), Flash::SUCCESS);
             $this->redirect('Settings:');
         };
         return $control;
@@ -77,7 +78,7 @@ class SettingsPresenter extends SecuredPresenter
         $control = $this->settingsGridFactory->create();
         $control->onDelete[] = function()
         {
-            $this->flashMessage('Settings has been successfully deleted', 'alert-success');
+            $this->flashMessage($this->translator->translate('cookieConsent.cookieConsentHasBeenSuccessfullyDeleted'), Flash::SUCCESS);
             $this->redirect('Settings:');
         };
         return $control;

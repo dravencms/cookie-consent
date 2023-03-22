@@ -23,7 +23,7 @@ class SettingsPresenter extends BasePresenter
     {
         $settings = $this->settingsRepository->getOneByActive();
         $this->template->settings = $settings;
-        
+
         if (!$settings) {
             return;
         }

@@ -98,28 +98,28 @@ class SettingsGrid extends BaseControl
         $grid->setDataSource($this->settingsRepository->getSettingsQueryBuilder());
 
         $grid->setDefaultSort(['createdAt' => 'ASC']);
-        $grid->addColumnText('identifier', 'Identifier')
+        $grid->addColumnText('identifier', 'cookieConsent.identifier')
             ->setFilterText();
 
-        $grid->addColumnDateTime('createdAt', 'Created')
+        $grid->addColumnDateTime('createdAt', 'cookieConsent.createdAt')
             ->setFormat($this->currentLocale->getDateTimeFormat())
             ->setAlign('center')
             ->setSortable()
             ->setFilterDate();
 
-        $grid->addColumnDateTime('updatedAt', 'Last edit')
+        $grid->addColumnDateTime('updatedAt', 'cookieConsent.updatedAt')
             ->setFormat($this->currentLocale->getDateTimeFormat())
             ->setAlign('center')
             ->setSortable()
             ->setFilterDate();
 
-        $grid->addColumnBoolean('isActive', 'Active');
+        $grid->addColumnBoolean('isActive', 'cookieConsent.isActive');
 
         if ($this->user->isAllowed('cookieConsent', 'edit'))
         {
             $grid->addAction('edit', '')
                 ->setIcon('pencil')
-                ->setTitle('Upravit')
+                ->setTitle('cookieConsent.edit')
                 ->setClass('btn btn-xs btn-primary');
         }
 
@@ -127,18 +127,18 @@ class SettingsGrid extends BaseControl
         {
             $grid->addAction('delete', '', 'delete!')
                 ->setIcon('trash')
-                ->setTitle('Smazat')
+                ->setTitle('cookieConsent.delete')
                 ->setClass('btn btn-xs btn-danger ajax')
-                ->setConfirmation(new StringConfirmation('Do you really want to delete row %s?', 'identifier'));
+                ->setConfirmation(new StringConfirmation('cookieConsent.doYouReallyWantToDeleteRowIdentifier', 'identifier'));
 
-            $grid->addGroupAction('Smazat')->onSelect[] = [$this, 'handleDelete'];
+            $grid->addGroupAction('cookieConsent.delete')->onSelect[] = [$this, 'handleDelete'];
         }
 
-        $grid->addExportCsvFiltered('Csv export (filtered)', 'acl_resource_filtered.csv')
-            ->setTitle('Csv export (filtered)');
+        $grid->addExportCsvFiltered('cookieConsent.csvExportFiltered', 'cookie_consent_filtered.csv')
+            ->setTitle('cookieConsent.csvExportFiltered');
 
-        $grid->addExportCsv('Csv export', 'acl_resource_all.csv')
-            ->setTitle('Csv export');
+        $grid->addExportCsv('cookieConsent.csvExport', 'cookie_consent_all.csv')
+            ->setTitle('cookieConsent.csvExport');
 
         return $grid;
     }
