@@ -16,7 +16,7 @@ nettrine.orm.annotations:
 
 webloader:
     css:
-        cookieConsent:
+        frontend:
             files:
                 - cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.css
                 - cookieConsent/style.css
@@ -26,7 +26,7 @@ webloader:
                 - @sassFilter
 
     js:
-        cookieConsent: 
+        frontend: 
             remoteFiles:
                 - /assets/cookieConsent/node_modules/vanilla-cookieconsent/dist/cookieconsent.js
                 - /cookieconsent-init

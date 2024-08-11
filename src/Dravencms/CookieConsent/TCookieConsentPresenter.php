@@ -2,8 +2,6 @@
 
 namespace Dravencms\CookieConsent;
 
-use WebLoader\Nette\CssLoader;
-use WebLoader\Nette\JavaScriptLoader;
 use Dravencms\FrontModule\Components\CookieConsent\CookieConsent\SettingsButton\SettingsButtonFactory;
 use Dravencms\FrontModule\Components\CookieConsent\CookieConsent\SettingsButton\SettingsButton;
 
@@ -26,21 +24,5 @@ trait TCookieConsentPresenter
     public function createComponentCookieConsentSettingsButton(): SettingsButton
     {
         return $this->settingsButtonFactory->create();
-    }
-
-    /**
-     * @return \WebLoader\Nette\CssLoader
-     */
-    public function createComponentCookieConsentCss(): CssLoader
-    {
-        return $this->webLoader->createCssLoader('cookieConsent');
-    }
-
-    /**
-     * @return JavaScriptLoader
-     */
-    public function createComponentCookieConsentJs(): JavaScriptLoader
-    {
-        return $this->webLoader->createJavaScriptLoader('cookieConsent');
     }
 }
