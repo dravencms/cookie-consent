@@ -6,17 +6,18 @@
 namespace Dravencms\Model\CookieConsent\Entities;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Dravencms\Database\Attributes\Identifier;
+use Dravencms\Database\Attributes\TimestampableEntity;
 use Nette;
 
 /**
  * Class Settings
  * @package Dravencms\Model\CookieConsent\Entities
- * @ORM\Entity
- * @ORM\Table(name="cookieConsentSettings")
  */
+#[ORM\Entity]
+#[ORM\Table(name: "cookieConsentSettings")]
 class Settings
 {
     use Nette\SmartObject;
@@ -28,56 +29,56 @@ class Settings
 
     /**
      * @var string
-     * @ORM\Column(type="string",length=255, nullable=false)
      */
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private $identifier;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: "boolean", nullable: false)]
     private $isActive;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: "boolean", nullable: false)]
     private $isAutoclearCookies;
 
     /**
      * @var integer
-     * @ORM\Column(type="integer",nullable=false)
      */
+    #[ORM\Column(type: "integer", nullable: false)]
     private $cookieExpiration;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: "boolean", nullable: false)]
     private $isPageScripts;
 
     /**
      * @var boolean
-     * @ORM\Column(type="boolean", nullable=false)
      */
+    #[ORM\Column(type: "boolean", nullable: false)]
     private $isForceConsent;
 
     /**
      * @var string
-     * @ORM\Column(type="string",length=255, nullable=false)
      */
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private $mode;
 
     /**
      * @var string
-     * @ORM\Column(type="string",length=255, nullable=true)
      */
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
     private $cookieDomain;
 
     /**
      * @var ArrayCollection|SettingsTranslation[]
-     * @ORM\OneToMany(targetEntity="SettingsTranslation", mappedBy="settings",cascade={"persist", "remove"})
      */
+    #[ORM\OneToMany(targetEntity: "SettingsTranslation", mappedBy: "settings", cascade: ["persist", "remove"])]
     private $translations;
 
 
@@ -96,7 +97,7 @@ class Settings
         bool $isPageScripts = true,
         bool $isForceConsent = false,
         string $mode = self::MODE_OPT_OUT,
-        string $cookieDomain = null
+        ?string $cookieDomain = null
     )
     {
         $this->identifier = $identifier;
@@ -246,7 +247,7 @@ class Settings
     /**
      * @return ArrayCollection|SettingsTranslation[]
      */
-    public function getTranslations()
+    public function getTranslations(): Collection
     {
         return $this->translations;
     }

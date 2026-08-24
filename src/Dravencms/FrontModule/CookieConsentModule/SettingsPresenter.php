@@ -29,7 +29,7 @@ class SettingsPresenter extends BasePresenter
         }
 
         $languages = [];
-        foreach($settings->getTranslations() AS $settingsTranslation) {
+        foreach ($settings->getTranslations() as $settingsTranslation) {
             $translator = new Translator($settingsTranslation->getLocale(), $this->translator, 'cookieConsent');
             $languageCode = $settingsTranslation->getLocale()->getLanguageCode();
             $languages[$languageCode] = [

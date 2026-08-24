@@ -30,7 +30,7 @@ class SettingsRepository
      * @param int $id
      * @return null|Settings
      */
-    public function getOneById(int $id): Settings
+    public function getOneById(int $id): ?Settings
     {
         return $this->settingsRepository->find($id);
     }
@@ -60,14 +60,12 @@ class SettingsRepository
      * @return mixed
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function isIdentifierFree(string $identifier, Settings $settingsIgnore = null): bool
+    public function isIdentifierFree(string $identifier, ?Settings $settingsIgnore = null): bool
     {
         $qb = $this->settingsRepository->createQueryBuilder('s')
             ->select('s')
             ->where('s.identifier = :identifier')
-            ->setParameters([
-                'identifier' => $identifier
-            ]);
+            ->setParameter('identifier', $identifier);
 
         if ($settingsIgnore)
         {
@@ -118,7 +116,7 @@ class SettingsRepository
             $otherSettings = $qb->getQuery()
                 ->getResult();
 
-            foreach ($otherSettings AS $other) {
+            foreach ($otherSettings as $other) {
                 $other->setIsActive(false);
                 $this->entityManager->persist($other);
             }

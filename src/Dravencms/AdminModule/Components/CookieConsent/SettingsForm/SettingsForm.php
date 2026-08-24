@@ -86,7 +86,7 @@ class SettingsForm extends BaseControl
         LocaleRepository $localeRepository,
         CurrentLocaleResolver $currentLocaleResolver,
         User $user,
-        Settings $settings = null
+        ?Settings $settings = null
     ) {
 
         $this->settings = $settings;
@@ -99,40 +99,6 @@ class SettingsForm extends BaseControl
         $this->currentLocale = $currentLocaleResolver->getCurrentLocale();
         $this->localeRepository = $localeRepository;
 
-
-        if ($this->settings) {
-            $defaults = [
-                'identifier' => $this->settings->getIdentifier(),
-                'isActive' => $this->settings->isActive(),
-                'isAutoclearCookies' => $this->settings->isAutoclearCookies(),
-                'cookieExpiration' => $this->settings->getCookieExpiration(),
-                'isPageScripts' => $this->settings->isPageScripts(),
-                'isForceConsent' => $this->settings->isForceConsent(),
-                'mode' => $this->settings->getMode(),
-                'cookieDomain' => $this->settings->getCookieDomain(),
-            ];
-
-            foreach ($this->settings->getTranslations() AS $translation)
-            {
-                $defaults[$translation->getLocale()->getLanguageCode()]['title'] = $translation->getTitle();
-                $defaults[$translation->getLocale()->getLanguageCode()]['description'] = $translation->getDescription();
-                $defaults[$translation->getLocale()->getLanguageCode()]['revisionMessage'] = $translation->getRevisionMessage();
-                $defaults[$translation->getLocale()->getLanguageCode()]['personalDataProtectionUrl'] = $translation->getPersonalDataProtectionUrl();
-                $defaults[$translation->getLocale()->getLanguageCode()]['cookiesInformationUrl'] = $translation->getCookiesInformationUrl();
-            }
-        }
-        else{
-            $defaults = [
-                'isActive' => true,
-                'isAutoclearCookies' => true,
-                'cookieExpiration' => 365,
-                'isPageScripts' => true,
-                'isForceConsent' => false,
-                'mode' => Settings::MODE_OPT_OUT,
-            ];
-        }
-
-        $this['form']->setDefaults($defaults);
     }
 
     /**
@@ -142,7 +108,7 @@ class SettingsForm extends BaseControl
     {
         $form = $this->baseFormFactory->create();
 
-        foreach ($this->localeRepository->getActive() AS $activeLocale) {
+        foreach ($this->localeRepository->getActive() as $activeLocale) {
             $container = $form->addContainer($activeLocale->getLanguageCode());
             $container->addText('title')
                 ->setRequired('cookieConset.pleaseEnterTitle')
@@ -184,6 +150,39 @@ class SettingsForm extends BaseControl
 
         $form->onValidate[] = [$this, 'editFormValidate'];
         $form->onSuccess[] = [$this, 'editFormSucceeded'];
+
+        if ($this->settings) {
+            $defaults = [
+                'identifier' => $this->settings->getIdentifier(),
+                'isActive' => $this->settings->isActive(),
+                'isAutoclearCookies' => $this->settings->isAutoclearCookies(),
+                'cookieExpiration' => $this->settings->getCookieExpiration(),
+                'isPageScripts' => $this->settings->isPageScripts(),
+                'isForceConsent' => $this->settings->isForceConsent(),
+                'mode' => $this->settings->getMode(),
+                'cookieDomain' => $this->settings->getCookieDomain(),
+            ];
+
+            foreach ($this->settings->getTranslations() as $translation) {
+                $languageCode = $translation->getLocale()->getLanguageCode();
+                $defaults[$languageCode]['title'] = $translation->getTitle();
+                $defaults[$languageCode]['description'] = $translation->getDescription();
+                $defaults[$languageCode]['revisionMessage'] = $translation->getRevisionMessage();
+                $defaults[$languageCode]['personalDataProtectionUrl'] = $translation->getPersonalDataProtectionUrl();
+                $defaults[$languageCode]['cookiesInformationUrl'] = $translation->getCookiesInformationUrl();
+            }
+        } else {
+            $defaults = [
+                'isActive' => true,
+                'isAutoclearCookies' => true,
+                'cookieExpiration' => 365,
+                'isPageScripts' => true,
+                'isForceConsent' => false,
+                'mode' => Settings::MODE_OPT_OUT,
+            ];
+        }
+
+        $form->setDefaults($defaults);
 
         return $form;
     }
@@ -246,7 +245,7 @@ class SettingsForm extends BaseControl
         $this->settingsRepository->processIsActive($settings);
 
 
-        foreach ($this->localeRepository->getActive() AS $activeLocale) {
+        foreach ($this->localeRepository->getActive() as $activeLocale) {
             if ($settingsTranslation = $this->settingsTranslationRepository->getTranslation($settings, $activeLocale))
             {
                 $settingsTranslation->setTitle($values->{$activeLocale->getLanguageCode()}->title);

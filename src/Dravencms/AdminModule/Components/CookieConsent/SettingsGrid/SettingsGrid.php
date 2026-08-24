@@ -30,7 +30,8 @@ use Dravencms\Model\CookieConsent\Repository\SettingsRepository;
 use Dravencms\Database\EntityManager;
 use Dravencms\Model\Locale\Entities\Locale;
 use Nette\Security\User;
-use Ublaboo\DataGrid\Column\Action\Confirmation\StringConfirmation;
+use Contributte\Datagrid\Column\Action\Confirmation\StringConfirmation;
+use Dravencms\User\Attributes\IsAllowed;
 
 /**
  * Description of SettingsGrid
@@ -88,7 +89,7 @@ class SettingsGrid extends BaseControl
     /**
      * @param string $name
      * @return Grid
-     * @throws \Ublaboo\DataGrid\Exception\DataGridException
+     * @throws \Contributte\Datagrid\Exception\DatagridException
      */
     public function createComponentGrid(string $name): Grid
     {
@@ -146,12 +147,12 @@ class SettingsGrid extends BaseControl
     /**
      * @param $id
      * @throws \Exception
-     * @isAllowed(settings, delete)
      */
+    #[IsAllowed('cookieConsent', 'delete')]
     public function handleDelete($id): void
     {
         $rows = $this->settingsRepository->getById($id);
-        foreach ($rows AS $settings)
+        foreach ($rows as $settings)
         {
             $this->entityManager->remove($settings);
         }

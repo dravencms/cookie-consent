@@ -21,7 +21,7 @@ class AclResourceFixtures extends AbstractFixture
         $resources = [
             'cookieConsent' => 'CookieConsent'
         ];
-        foreach ($resources AS $resourceName => $resourceDescription)
+        foreach ($resources as $resourceName => $resourceDescription)
         {
             $aclResource = new AclResource($resourceName, $resourceDescription);
             $manager->persist($aclResource);

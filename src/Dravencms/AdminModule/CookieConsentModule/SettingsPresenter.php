@@ -11,6 +11,7 @@ use Dravencms\AdminModule\SecuredPresenter;
 use Dravencms\Flash;
 use Dravencms\Model\CookieConsent\Entities\Settings;
 use Dravencms\Model\CookieConsent\Repository\SettingsRepository;
+use Dravencms\User\Attributes\IsAllowed;
 
 /**
  * Description of SettingsPresenter
@@ -37,11 +38,11 @@ class SettingsPresenter extends SecuredPresenter
     }
 
     /**
-     * @isAllowed(cookieConsent,edit)
      * @param $id
      * @throws \Nette\Application\BadRequestException
      */
-    public function actionEdit(int $id = null): void
+    #[IsAllowed('cookieConsent', 'edit')]
+    public function actionEdit(?int $id = null): void
     {
         if ($id) {
             $settings = $this->settingsRepository->getOneById($id);

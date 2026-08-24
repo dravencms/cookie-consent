@@ -8,9 +8,18 @@ services:
         setup:
             - addRouteFactory(@routeFactory.CookieConsent)
 
-nettrine.orm.annotations:
-    mapping:
-        Dravencms\Model\CookieConsent: %appDir%/../vendor/dravencms/cookie-consent/src/Dravencms/Model/CookieConsent/Entities
+    cookieConsent.adminSettingsPresenter: Dravencms\AdminModule\CookieConsentModule\SettingsPresenter
+    cookieConsent.frontSettingsPresenter: Dravencms\FrontModule\CookieConsentModule\SettingsPresenter
+
+nettrine.orm:
+    managers:
+        default:
+            mapping:
+                DravencmsCookieConsent:
+                    type: attributes
+                    directories:
+                        - %appDir%/../vendor/dravencms/cookie-consent/src/Dravencms/Model/CookieConsent
+                    namespace: Dravencms\Model\CookieConsent
 
 
 

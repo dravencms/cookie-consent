@@ -27,5 +27,5 @@ interface SettingsFormFactory
      * @param Settings|null $settings
      * @return SettingsForm
      */
-    public function create(Settings $settings = null): SettingsForm;
+    public function create(?Settings $settings = null): SettingsForm;
 }

@@ -7,15 +7,15 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Dravencms\Model\Locale\Entities\Locale;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Dravencms\Database\Attributes\Identifier;
+use Dravencms\Database\Attributes\TimestampableEntity;
 use Nette;
 
 /**
  * Class SettingsTranslation
- * @ORM\Entity
- * @ORM\Table(name="cookieConsentSettingsTranslation")
  */
+#[ORM\Entity]
+#[ORM\Table(name: "cookieConsentSettingsTranslation")]
 class SettingsTranslation
 {
     use Nette\SmartObject;
@@ -24,47 +24,47 @@ class SettingsTranslation
 
     /**
      * @var string
-     * @ORM\Column(type="string",length=255,nullable=false)
      */
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private $title;
 
     /**
      * @var string
-     * @ORM\Column(type="text",nullable=false)
      */
+    #[ORM\Column(type: "text", nullable: false)]
     private $description;
 
     /**
      * @var string
-     * @ORM\Column(type="string",length=255,nullable=false)
      */
+    #[ORM\Column(type: "string", length: 255, nullable: false)]
     private $revisionMessage;
 
     /**
      * @var string
-     * @ORM\Column(type="text",nullable=false)
      */
+    #[ORM\Column(type: "text", nullable: false)]
     private $personalDataProtectionUrl;
 
     /**
      * @var string
-     * @ORM\Column(type="text",nullable=false)
      */
+    #[ORM\Column(type: "text", nullable: false)]
     private $cookiesInformationUrl;
 
 
     /**
      * @var Settings
-     * @ORM\ManyToOne(targetEntity="Settings", inversedBy="translations")
-     * @ORM\JoinColumn(name="settings_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: "Settings", inversedBy: "translations")]
+    #[ORM\JoinColumn(name: "settings_id", referencedColumnName: "id")]
     private $settings;
 
     /**
      * @var Locale
-     * @ORM\ManyToOne(targetEntity="Dravencms\Model\Locale\Entities\Locale")
-     * @ORM\JoinColumn(name="locale_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: "Dravencms\Model\Locale\Entities\Locale")]
+    #[ORM\JoinColumn(name: "locale_id", referencedColumnName: "id")]
     private $locale;
 
     /**

@@ -1,5 +1,5 @@
 {block #content}
-    <p n:isAllowed="cookieConsent, edit">
+    <p n:if="isAllowed('cookieConsent', 'edit')">
         <a n:href="Settings:edit" class="btn btn-primary"><i class="fa fa-plus"></i> {_"cookieConsent.newCookieConsent"}</a>
     </p>
     {control gridSettings}
