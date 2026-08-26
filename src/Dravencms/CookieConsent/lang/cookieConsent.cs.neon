@@ -40,6 +40,8 @@ settings_modal:
         b4:
             title: Další informace
             description: '<a href="%cookiesInformationUrl%" class="cc-link" target="_blank">Informace o souborech cookies</a> | <a href="%personalDataProtectionUrl%" class="cc-link" target="_blank">Ochrana osobních údajů</a>.'
+            cookies_information: Informace o souborech cookies
+            personal_data_protection: Ochrana osobních údajů
 
 
 
@@ -62,6 +64,8 @@ pleaseEnterDescription: 'Prosím zadejte popis.'
 pleaseEnterRevisionMessage: 'Prosím zadejte zprávu změny revize.'
 pleaseEnterPersonalDataProtectionUrl: 'Prosím zadejte odkaz na ochranu osbních údajů.'
 pleaseEnterCookiesInformationUrl: 'Prosím zadejte odkaz na informace o souborech cookies.'
+pleaseEnterValidPersonalDataProtectionUrl: 'Prosím zadejte platný odkaz na ochranu osobních údajů.'
+pleaseEnterValidCookiesInformationUrl: 'Prosím zadejte platný odkaz na informace o souborech cookies.'
 pleaseEnterIdentifier: 'Prosím zadejte identifikátor.'
 pleaseSelectValidMode: 'Vyberte prosím validní mód.'
 thisIdentifierIsAlreadyUsed: 'Tento identifikátor je již zabrán.'

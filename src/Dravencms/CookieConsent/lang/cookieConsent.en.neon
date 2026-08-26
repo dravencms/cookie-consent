@@ -40,6 +40,8 @@ settings_modal:
         b4:
             title: More information
             description: '<a href="%cookiesInformationUrl%" class="cc-link" target="_blank">Information about cookies </a> | <a href="%personalDataProtectionUrl%" class="cc-link" target="_blank">Processing of personal data</a>.'
+            cookies_information: Information about cookies
+            personal_data_protection: Processing of personal data
 
 
 title: 'Title'
@@ -61,6 +63,8 @@ pleaseEnterDescription: 'Please enter a description.'
 pleaseEnterRevisionMessage: 'Please enter a revision message.'
 pleaseEnterPersonalDataProtectionUrl: 'Please enter a personal data protection url.'
 pleaseEnterCookiesInformationUrl: 'Please enter a cookies information url.'
+pleaseEnterValidPersonalDataProtectionUrl: 'Please enter a valid personal data protection URL.'
+pleaseEnterValidCookiesInformationUrl: 'Please enter a valid cookies information URL.'
 pleaseEnterIdentifier: 'Please enter a identifier'
 pleaseSelectValidMode: 'Please select valid mode.'
 thisIdentifierIsAlreadyUsed: 'This identifier is already used.'

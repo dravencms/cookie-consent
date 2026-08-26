@@ -32,6 +32,24 @@ class SettingsPresenter extends BasePresenter
         foreach ($settings->getTranslations() as $settingsTranslation) {
             $translator = new Translator($settingsTranslation->getLocale(), $this->translator, 'cookieConsent');
             $languageCode = $settingsTranslation->getLocale()->getLanguageCode();
+            $moreInformationLinks = [];
+
+            if ($cookiesInformationUrl = $settingsTranslation->getCookiesInformationUrl()) {
+                $moreInformationLinks[] = sprintf(
+                    '<a href="%s" class="cc-link" target="_blank" rel="noopener noreferrer">%s</a>',
+                    htmlspecialchars($cookiesInformationUrl, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+                    $translator->translate('settings_modal.blocks.b4.cookies_information')
+                );
+            }
+
+            if ($personalDataProtectionUrl = $settingsTranslation->getPersonalDataProtectionUrl()) {
+                $moreInformationLinks[] = sprintf(
+                    '<a href="%s" class="cc-link" target="_blank" rel="noopener noreferrer">%s</a>',
+                    htmlspecialchars($personalDataProtectionUrl, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'),
+                    $translator->translate('settings_modal.blocks.b4.personal_data_protection')
+                );
+            }
+
             $languages[$languageCode] = [
                 'consent_modal' => [
                     'title' => $settingsTranslation->getTitle(),
@@ -125,14 +143,15 @@ class SettingsPresenter extends BasePresenter
                             ]
                         ], [
                             'title' => $translator->translate('settings_modal.blocks.b4.title'),
-                            'description' => $translator->translate('settings_modal.blocks.b4.description', [
-                                'cookiesInformationUrl' => $settingsTranslation->getCookiesInformationUrl(),
-                                'personalDataProtectionUrl' => $settingsTranslation->getPersonalDataProtectionUrl(),
-                            ])
+                            'description' => implode(' | ', $moreInformationLinks)
                         ]
                     ]
                 ]
             ];
+
+            if ($moreInformationLinks === []) {
+                array_pop($languages[$languageCode]['settings_modal']['blocks']);
+            }
         }
 
         $this->template->languages = json_encode($languages);

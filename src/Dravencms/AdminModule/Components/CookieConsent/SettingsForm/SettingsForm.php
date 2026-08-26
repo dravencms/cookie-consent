@@ -121,10 +121,10 @@ class SettingsForm extends BaseControl
             ->setRequired('cookieConset.pleaseEnterRevisionMessage');
 
             $container->addText('personalDataProtectionUrl')
-            ->setRequired('cookieConset.pleaseEnterPersonalDataProtectionUrl');
+                ->addRule(Form::URL, 'cookieConset.pleaseEnterValidPersonalDataProtectionUrl');
 
             $container->addText('cookiesInformationUrl')
-            ->setRequired('cookieConset.pleaseEnterCookiesInformationUrl');
+                ->addRule(Form::URL, 'cookieConset.pleaseEnterValidCookiesInformationUrl');
         }
 
         $form->addText('identifier')
@@ -246,24 +246,28 @@ class SettingsForm extends BaseControl
 
 
         foreach ($this->localeRepository->getActive() as $activeLocale) {
+            $translationValues = $values->{$activeLocale->getLanguageCode()};
+            $personalDataProtectionUrl = $translationValues->personalDataProtectionUrl ?: null;
+            $cookiesInformationUrl = $translationValues->cookiesInformationUrl ?: null;
+
             if ($settingsTranslation = $this->settingsTranslationRepository->getTranslation($settings, $activeLocale))
             {
-                $settingsTranslation->setTitle($values->{$activeLocale->getLanguageCode()}->title);
-                $settingsTranslation->setDescription($values->{$activeLocale->getLanguageCode()}->description);
-                $settingsTranslation->setRevisionMessage($values->{$activeLocale->getLanguageCode()}->revisionMessage);
-                $settingsTranslation->setPersonalDataProtectionUrl($values->{$activeLocale->getLanguageCode()}->personalDataProtectionUrl);
-                $settingsTranslation->setCookiesInformationUrl($values->{$activeLocale->getLanguageCode()}->cookiesInformationUrl);
+                $settingsTranslation->setTitle($translationValues->title);
+                $settingsTranslation->setDescription($translationValues->description);
+                $settingsTranslation->setRevisionMessage($translationValues->revisionMessage);
+                $settingsTranslation->setPersonalDataProtectionUrl($personalDataProtectionUrl);
+                $settingsTranslation->setCookiesInformationUrl($cookiesInformationUrl);
             }
             else
             {
                 $settingsTranslation = new SettingsTranslation(
                     $settings,
                     $activeLocale,
-                    $values->{$activeLocale->getLanguageCode()}->title,
-                    $values->{$activeLocale->getLanguageCode()}->description,
-                    $values->{$activeLocale->getLanguageCode()}->revisionMessage,
-                    $values->{$activeLocale->getLanguageCode()}->personalDataProtectionUrl,
-                    $values->{$activeLocale->getLanguageCode()}->cookiesInformationUrl,
+                    $translationValues->title,
+                    $translationValues->description,
+                    $translationValues->revisionMessage,
+                    $personalDataProtectionUrl,
+                    $cookiesInformationUrl,
                 );
             }
 

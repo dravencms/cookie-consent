@@ -41,15 +41,15 @@ class SettingsTranslation
     private $revisionMessage;
 
     /**
-     * @var string
+     * @var string|null
      */
-    #[ORM\Column(type: "text", nullable: false)]
+    #[ORM\Column(type: "text", nullable: true)]
     private $personalDataProtectionUrl;
 
     /**
-     * @var string
+     * @var string|null
      */
-    #[ORM\Column(type: "text", nullable: false)]
+    #[ORM\Column(type: "text", nullable: true)]
     private $cookiesInformationUrl;
 
 
@@ -81,8 +81,8 @@ class SettingsTranslation
         string $title, 
         string $description, 
         string $revisionMessage,
-        string $personalDataProtectionUrl,
-        string $cookiesInformationUrl
+        ?string $personalDataProtectionUrl,
+        ?string $cookiesInformationUrl
     )
     {
         $this->title = $title;
@@ -119,17 +119,17 @@ class SettingsTranslation
     }
 
     /**
-     * @param string $personalDataProtectionUrl
+     * @param string|null $personalDataProtectionUrl
      */
-    public function setPersonalDataProtectionUrl(string $personalDataProtectionUrl): void
+    public function setPersonalDataProtectionUrl(?string $personalDataProtectionUrl): void
     {
         $this->personalDataProtectionUrl = $personalDataProtectionUrl;
     }
 
     /**
-     * @param string $cookiesInformationUrl
+     * @param string|null $cookiesInformationUrl
      */
-    public function setCookiesInformationUrl(string $cookiesInformationUrl): void
+    public function setCookiesInformationUrl(?string $cookiesInformationUrl): void
     {
         $this->cookiesInformationUrl = $cookiesInformationUrl;
     }
@@ -177,7 +177,7 @@ class SettingsTranslation
     /**
      * @return string
      */
-    public function getPersonalDataProtectionUrl(): string
+    public function getPersonalDataProtectionUrl(): ?string
     {
         return $this->personalDataProtectionUrl;
     }
@@ -185,7 +185,7 @@ class SettingsTranslation
     /**
      * @return string
      */
-    public function getCookiesInformationUrl(): string
+    public function getCookiesInformationUrl(): ?string
     {
         return $this->cookiesInformationUrl;
     }
