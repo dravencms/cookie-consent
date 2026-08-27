@@ -1,10 +1,31 @@
 .cookies-settings-icon {
+    background-color: transparent;
     background-image: url('./images/cookie.svg');
     background-size: cover;
+    border: 0;
+    cursor: pointer;
     display: block;
     position: fixed;
     bottom: 10px;
     left: 10px;
     width: 32px;
     height: 32px;
+}
+
+#cc-main,
+#cc-main * {
+    cursor: auto !important;
+}
+
+#cc-main a,
+#cc-main button,
+#cc-main input,
+#cc-main label,
+#cc-main [role="button"] {
+    cursor: pointer !important;
+}
+
+#cc-main input:disabled,
+#cc-main button:disabled {
+    cursor: not-allowed !important;
 }

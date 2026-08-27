@@ -44,6 +44,14 @@ Render the settings button wherever visitors should be able to reopen their cons
 
 The button is rendered only when an active configuration exists. The package's frontend bundle loads Vanilla CookieConsent, package styling, and the generated `/cookieconsent-init` script automatically.
 
+Consent-managed scripts use Vanilla CookieConsent v3 attributes:
+
+```html
+<script type="text/plain" data-category="analytics" data-service="Google Analytics">
+    // Loaded after analytics consent.
+</script>
+```
+
 ## Administration
 
 Create a configuration for every required locale, then set one configuration active. Available settings include:
