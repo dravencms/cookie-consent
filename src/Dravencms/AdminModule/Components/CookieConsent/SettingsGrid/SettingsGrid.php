@@ -121,7 +121,7 @@ class SettingsGrid extends BaseControl
             $grid->addAction('edit', '')
                 ->setIcon('pencil')
                 ->setTitle('cookieConsent.edit')
-                ->setClass('btn btn-xs btn-primary');
+                ->setClass('btn btn-sm btn-primary');
         }
 
         if ($this->user->isAllowed('cookieConsent', 'delete'))
@@ -129,7 +129,7 @@ class SettingsGrid extends BaseControl
             $grid->addAction('delete', '', 'delete!')
                 ->setIcon('trash')
                 ->setTitle('cookieConsent.delete')
-                ->setClass('btn btn-xs btn-danger ajax')
+                ->setClass('btn btn-sm btn-danger ajax')
                 ->setConfirmation(new StringConfirmation('cookieConsent.doYouReallyWantToDeleteRowIdentifier', 'identifier'));
 
             $grid->addGroupAction('cookieConsent.delete')->onSelect[] = [$this, 'handleDelete'];
