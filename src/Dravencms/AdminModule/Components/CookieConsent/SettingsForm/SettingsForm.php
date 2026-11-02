@@ -111,34 +111,34 @@ class SettingsForm extends BaseControl
         foreach ($this->localeRepository->getActive() as $activeLocale) {
             $container = $form->addContainer($activeLocale->getLanguageCode());
             $container->addText('title')
-                ->setRequired('cookieConset.pleaseEnterTitle')
-                ->addRule(Form::MAX_LENGTH, 'cookieConset.titleIsTooLong', 255);
+                ->setRequired('cookieConsent.pleaseEnterTitle')
+                ->addRule(Form::MAX_LENGTH, 'cookieConsent.titleIsTooLong', 255);
 
             $container->addTextArea('description')
-            ->setRequired('cookieConset.pleaseEnterDescription');
+            ->setRequired('cookieConsent.pleaseEnterDescription');
 
             $container->addTextArea('revisionMessage')
-            ->setRequired('cookieConset.pleaseEnterRevisionMessage');
+            ->setRequired('cookieConsent.pleaseEnterRevisionMessage');
 
             $container->addText('personalDataProtectionUrl')
-                ->addRule(Form::URL, 'cookieConset.pleaseEnterValidPersonalDataProtectionUrl');
+                ->addRule(Form::URL, 'cookieConsent.pleaseEnterValidPersonalDataProtectionUrl');
 
             $container->addText('cookiesInformationUrl')
-                ->addRule(Form::URL, 'cookieConset.pleaseEnterValidCookiesInformationUrl');
+                ->addRule(Form::URL, 'cookieConsent.pleaseEnterValidCookiesInformationUrl');
         }
 
         $form->addText('identifier')
-            ->setRequired('cookieConset.pleaseEnterIdentifier');
+            ->setRequired('cookieConsent.pleaseEnterIdentifier');
 
-        $form->addInteger('cookieExpiration');
+        $form->addText('cookieExpiration')->setNullable()->addRule(Form::INTEGER, 'cookieConsent.cookieExpirationMustBeInteger');
         $form->addText('cookieDomain');
 
         $modes = [
-            Settings::MODE_OPT_OUT => 'Opt Out',
-            Settings::MODE_OPT_IN => 'Opt In',
+            Settings::MODE_OPT_OUT => 'cookieConsent.optOut',
+            Settings::MODE_OPT_IN => 'cookieConsent.optIn',
         ];
         $form->addSelect('mode', null, $modes)
-            ->setRequired('cookieConset.pleaseSelectValidMode');
+            ->setRequired('cookieConsent.pleaseSelectValidMode');
 
         $form->addCheckbox('isActive');
         $form->addCheckbox('isAutoclearCookies');
@@ -146,7 +146,7 @@ class SettingsForm extends BaseControl
         $form->addCheckbox('isForceConsent');
 
 
-        $form->addSubmit('send');
+        $form->addSubmit('send', 'cookieConsent.save');
 
         $form->onValidate[] = [$this, 'editFormValidate'];
         $form->onSuccess[] = [$this, 'editFormSucceeded'];
@@ -196,11 +196,11 @@ class SettingsForm extends BaseControl
         $values = $form->getValues();
 
         if (!$this->settingsRepository->isIdentifierFree($values->identifier, $this->settings)) {
-            $form->addError('cookieConset.thisIdentifierIsAlreadyUsed');
+            $form->addError('cookieConsent.thisIdentifierIsAlreadyUsed');
         }
 
         if (!$this->user->isAllowed('cookieConsent', 'edit')) {
-            $form->addError('cookieConset.youHaveNoPermissionToEditThisCookieConsent');
+            $form->addError('cookieConsent.youHaveNoPermissionToEditThisCookieConsent');
         }
     }
 
