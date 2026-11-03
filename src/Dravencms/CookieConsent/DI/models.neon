@@ -1,5 +1,2 @@
 - Dravencms\Model\CookieConsent\Repository\SettingsRepository
 - Dravencms\Model\CookieConsent\Repository\SettingsTranslationRepository
-
-- Dravencms\Model\CookieConsent\Fixtures\AclOperationFixtures
-- Dravencms\Model\CookieConsent\Fixtures\AclResourceFixtures

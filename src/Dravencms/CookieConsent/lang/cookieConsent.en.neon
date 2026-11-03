@@ -89,3 +89,11 @@ cookieExpirationMustBeInteger: 'Cookie expiration must be an integer.'
 
 menu:
     overview: 'Cookie consent'
+
+acl:
+    resource: 'Cookie consent'
+    permissions:
+        edit:
+            label: 'Manage cookie consent'
+        delete:
+            label: 'Delete cookie consent'
