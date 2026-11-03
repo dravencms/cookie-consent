@@ -86,3 +86,6 @@ save: 'Save'
 optOut: 'Consent by default (opt-out)'
 optIn: 'Consent only after confirmation (opt-in)'
 cookieExpirationMustBeInteger: 'Cookie expiration must be an integer.'
+
+menu:
+    overview: 'Cookie consent'

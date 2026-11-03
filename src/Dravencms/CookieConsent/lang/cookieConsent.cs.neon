@@ -87,3 +87,6 @@ save: 'Uložit'
 optOut: 'Souhlas ve výchozím stavu (opt-out)'
 optIn: 'Souhlas pouze po potvrzení (opt-in)'
 cookieExpirationMustBeInteger: 'Platnost cookie musí být celé číslo.'
+
+menu:
+    overview: 'Souhlas s cookies'
