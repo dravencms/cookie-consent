@@ -10,7 +10,7 @@ Multilingual cookie-consent administration and frontend integration for DravenCM
 - Opt-in and opt-out modes.
 - Cookie lifetime, domain, automatic cleanup, page-script, and forced-consent settings.
 - Reusable frontend settings button.
-- Admin menu and ACL fixtures.
+- Provider-defined admin navigation and ACL permissions.
 
 ## Installation
 
@@ -20,7 +20,7 @@ composer require dravencms/cookie-consent
 
 The DravenCMS package loader loads `dravencms.config.neon` and publishes assets to `%wwwDir%/assets/cookieConsent`. The configuration registers presenters, Doctrine mappings, translations, routes, and frontend WebLoader files.
 
-Apply the package's database schema through the application's migration workflow and load its fixtures when the default admin menu and ACL operations are required.
+Apply the package's database schema through the application's migration workflow before enabling administration. Navigation and permission definitions come from providers.
 
 ## Frontend Integration
 
@@ -71,8 +71,12 @@ Activating one configuration automatically deactivates the others.
 
 ## Permissions
 
-Fixtures define the `cookieConsent` ACL resource with `edit` and `delete` operations and grant them to the administrator group.
+The ACL provider defines `cookieConsent.edit` and `cookieConsent.delete`; assign them explicitly through the group editor.
 
 ## License
 
 This package is licensed under the LGPL-3.0-only license.
+
+## Admin authorization and mutations
+
+Administration uses User 3.1, Admin 3.2 and Application 0.3 guards. Screens and write callbacks enforce the existing provider-defined permissions server-side, including direct URLs and bulk callbacks. Mutating signals require POST and a session-bound action token; synchronize the matching admin assets when upgrading. See the User package's `user:security:migrate` instructions for the password-reset schema change.

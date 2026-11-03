@@ -210,6 +210,7 @@ class SettingsForm extends BaseControl
      */
     public function editFormSucceeded(Form $form): void
     {
+        $this->requirePermission('cookieConsent', 'edit');
         $values = $form->getValues();
         
         $cookieDomain = ($values->cookieDomain ? $values->cookieDomain: null);

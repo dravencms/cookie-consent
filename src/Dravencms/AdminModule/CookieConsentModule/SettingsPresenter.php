@@ -18,6 +18,7 @@ use Dravencms\User\Attributes\IsAllowed;
  *
  * @author Adam Schubert
  */
+#[\Dravencms\User\Attributes\IsAllowed('cookieConsent', 'edit')]
 class SettingsPresenter extends SecuredPresenter
 {
     /** @var SettingsRepository @inject */
@@ -32,6 +33,7 @@ class SettingsPresenter extends SecuredPresenter
     /** @var null|Settings */
     private $settings = null;
 
+    #[\Dravencms\User\Attributes\IsAllowed('cookieConsent', 'edit')]
     public function renderDefault(): void
     {
         $this->template->h1 = $this->translator->translate('cookieConsent.cookieConsent');

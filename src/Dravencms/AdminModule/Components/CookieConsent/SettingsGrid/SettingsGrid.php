@@ -95,6 +95,7 @@ class SettingsGrid extends BaseControl
     {
         /** @var Grid $grid */
         $grid = $this->baseGridFactory->create($this, $name);
+        $grid->setWritePermission('cookieConsent', 'edit');
 
         $grid->setDataSource($this->settingsRepository->getSettingsQueryBuilder());
 
@@ -148,9 +149,11 @@ class SettingsGrid extends BaseControl
      * @param $id
      * @throws \Exception
      */
-    #[IsAllowed('cookieConsent', 'delete')]
+    #[\Dravencms\User\Attributes\IsAllowed('cookieConsent', 'delete')]
+    #[\Dravencms\Security\Mutation]
     public function handleDelete($id): void
     {
+        $this->requirePermission('cookieConsent', 'delete');
         $rows = $this->settingsRepository->getById($id);
         foreach ($rows as $settings)
         {
